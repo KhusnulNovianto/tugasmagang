@@ -8,6 +8,7 @@
 <body>
 	<form method="get">
 		<select name="sekolah">
+			<option>...</option>
 			<option>SMP</option>
 			<option>SMA</option>
 			<option>SMK</option>
@@ -15,9 +16,8 @@
 		<button type="submit">Pilih</button>
 	</form>
 <?php
-	if ($_GET['sekolah']=="SMP") {
 
-		$r = array( 'SMP 01 Malang'        =>
+	$r = array( 'SMP 01 Malang'  =>
         [
             "alamat" => "Jl Mawar No 01",
             "tlp"    => "0341998822",
@@ -105,35 +105,7 @@
             'alamat' => 'Jl SMP 13 No 25',
             'tlp'    => '034192812',
         ],
-			 
-			);
-
-		foreach ($r as $x => $x_value) {
-			echo "<hr>";
-			echo $x."<br>";
-			echo "<table border=1>";
-			foreach ($x_value as $y => $y_value) {
-				if ($y !="siswa") {
-					echo "<tr>";
-					echo "<td>" .$y. "</td><td>" .$y_value. "</td>" ;
-					echo "</tr>";
-				}else{
-					echo "<tr>";
-					echo "<td colspan='2'>";
-					foreach ($y_value as $z => $z_value) {
-						echo $z;
-						echo $z_value. " l ";
-					}
-						echo "</td>";
-						echo "</tr>";
-				}
-			}
-			echo "</table>";
-		}
-	}
-	elseif ($_GET['sekolah']=="SMA") {
-
-		$r = array('SMA 01 Malang'        =>
+        'SMA 01 Malang'        =>
         [
             'alamat' => 'Jl SMA 01 No 41',
             'tlp'    => '0341872819',
@@ -207,35 +179,7 @@
             'alamat' => 'Jl SMA 10 No 451',
             'tlp'    => '0341872819',
         ],
-			 
-			);
-
-		foreach ($r as $x => $x_value) {
-			echo "<hr>";
-			echo $x."<br>";
-			echo "<table border=1>";
-			foreach ($x_value as $y => $y_value) {
-				if ($y !="siswa") {
-					echo "<tr>";
-					echo "<td>" .$y. "</td><td>" .$y_value. "</td>" ;
-					echo "</tr>";
-				}else{
-					echo "<tr>";
-					echo "<td colspan='2'>";
-					foreach ($y_value as $z => $z_value) {
-						echo $z;
-						echo $z_value. " l ";
-					}
-						echo "</td>";
-						echo "</tr>";
-				}
-			}
-			echo "</table>";
-		}
-	}
-	elseif ($_GET['sekolah']=="SMK") {
-
-		$r = array('SMK 01 Malang'        =>
+        'SMK 01 Malang'        =>
         [
             'alamat' => 'Jl SMA 01 No 21',
             'tlp'    => '0341928192',
@@ -299,15 +243,59 @@
             'alamat' => 'Jl Dr Soetomo No 25',
             'tlp'    => '0341587212',
         ],
-       
 			 
 			);
 
 		foreach ($r as $x => $x_value) {
+		if (strstr($x,"SMP")&& $_GET['sekolah']=="SMP") {
 			echo "<hr>";
 			echo $x."<br>";
 			echo "<table border=1>";
-			foreach ($x_value as $y => $y_value) {
+			foreach ($x_value as $y => $y_value) {		
+				if ($y !="siswa") {
+					echo "<tr>";
+					echo "<td>" .$y. "</td><td>" .$y_value. "</td>" ;
+					echo "</tr>";
+				}else{
+					echo "<tr>";
+					echo "<td colspan='2'>";
+					foreach ($y_value as $z => $z_value) {
+						echo $z;
+						echo $z_value. "  ";
+					}
+						echo "</td>";
+						echo "</tr>";
+				}
+			}
+			echo "</table>";
+		}
+		elseif (strstr($x,"SMA")&& $_GET['sekolah']=="SMA") {
+			echo "<hr>";
+			echo $x."<br>";
+			echo "<table border=1>";
+			foreach ($x_value as $y => $y_value) {		
+				if ($y !="siswa") {
+					echo "<tr>";
+					echo "<td>" .$y. "</td><td>" .$y_value. "</td>" ;
+					echo "</tr>";
+				}else{
+					echo "<tr>";
+					echo "<td colspan='2'>";
+					foreach ($y_value as $z => $z_value) {
+						echo $z;
+						echo $z_value. " l ";
+					}
+						echo "</td>";
+						echo "</tr>";
+				}
+			}
+			echo "</table>";
+		}
+		elseif (strstr($x,"SMK")&& $_GET['sekolah']=="SMK") {
+			echo "<hr>";
+			echo $x."<br>";
+			echo "<table border=1>";
+			foreach ($x_value as $y => $y_value) {		
 				if ($y !="siswa") {
 					echo "<tr>";
 					echo "<td>" .$y. "</td><td>" .$y_value. "</td>" ;
@@ -326,6 +314,8 @@
 			echo "</table>";
 		}
 	}
+	
+	
 ?>
 </body>
 </html>
